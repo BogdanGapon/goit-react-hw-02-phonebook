@@ -12,33 +12,27 @@ export class ContactForm extends Component {
   handleInputChange = evt => {
     const { name, value } = evt.currentTarget;
     this.setState({
-      [name]: value,
+      [name]: value.trim(),
     });
   };
 
   handleSubmitContact = evt => {
     evt.preventDefault();
 
-    this.props.change({
-      name: this.state.name,
-      id: nanoid(),
-      number: this.state.number,
-    });
+    if (
+      this.props.contacts.some(
+        contact => contact.name.toLowerCase() === this.state.name.toLowerCase()
+      )
+    )
+      alert(`${this.state.name} is already used.`);
+    else
+      this.props.change({
+        name: this.state.name,
+        id: nanoid(),
+        number: this.state.number,
+      });
 
-    // const { contacts } = this.props;
-    // contacts.push({
-    //   name: this.state.name,
-    //   id: nanoid(),
-    //   number: this.state.number,
-    // });
-    // this.setState({
-    //   contacts: [
-    //     ,
-    //     ...contacts,
-    //   ],
-    // });
-
-    // this.resetNameInput();
+    this.resetNameInput();
   };
 
   resetNameInput = () => {
@@ -48,7 +42,6 @@ export class ContactForm extends Component {
     });
   };
   render() {
-    console.log(this.props.contacts);
     return (
       <>
         <Form onSubmit={this.handleSubmitContact}>

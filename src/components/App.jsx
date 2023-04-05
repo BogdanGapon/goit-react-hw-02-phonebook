@@ -14,6 +14,12 @@ export class App extends Component {
     filter: '',
   };
 
+  onDeleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   change = obj => {
     this.setState({
       contacts: [obj, ...this.state.contacts],
@@ -39,6 +45,7 @@ export class App extends Component {
         <ContactList
           contacts={this.state.contacts}
           filter={this.state.filter}
+          deleteContact={this.onDeleteContact}
         />
       </AppWrapper>
     );
