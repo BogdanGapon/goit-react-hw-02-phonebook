@@ -1,4 +1,5 @@
 import { ContactItem } from './ContactList.styled.js';
+import PropTypes from 'prop-types';
 export const ContactList = ({ contacts, filter, deleteContact }) => {
   const createMarkupByFoundContacts = () => {
     return contacts.filter(contact => {
@@ -27,4 +28,10 @@ export const ContactList = ({ contacts, filter, deleteContact }) => {
       })}
     </ul>
   );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  filter: PropTypes.string,
+  deleteContact: PropTypes.func.isRequired,
 };

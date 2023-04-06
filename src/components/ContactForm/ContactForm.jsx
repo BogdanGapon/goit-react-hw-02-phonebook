@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { Form, LabelInput, Button } from './ContactForm.styled';
+import PropTypes from 'prop-types';
 export class ContactForm extends Component {
+  static propTypes = {
+    contacts: PropTypes.array.isRequired,
+    change: PropTypes.func.isRequired,
+  };
   state = {
     name: '',
     number: '',

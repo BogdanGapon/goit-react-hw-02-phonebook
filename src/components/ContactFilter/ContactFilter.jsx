@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-
+import PropTypes from 'prop-types';
 export const ContactFilter = ({ value, handleFindContacts }) => {
   const IdContacts = nanoid();
   return (
@@ -11,7 +11,12 @@ export const ContactFilter = ({ value, handleFindContacts }) => {
         name="filter"
         value={value}
         onChange={handleFindContacts}
-      ></input>
+      />
     </>
   );
+};
+
+ContactFilter.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleFindContacts: PropTypes.func.isRequired,
 };

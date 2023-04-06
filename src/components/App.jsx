@@ -3,6 +3,7 @@ import { AppWrapper } from './App.styled';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactFilter } from './ContactFilter/ContactFilter';
 import { ContactList } from './ContactList/ContactList';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -21,9 +22,9 @@ export class App extends Component {
   };
 
   change = obj => {
-    this.setState({
-      contacts: [obj, ...this.state.contacts],
-    });
+    this.setState(prevState => ({
+      contacts: [obj, ...prevState.contacts],
+    }));
   };
   handleFindContacts = evt => {
     this.setState({
